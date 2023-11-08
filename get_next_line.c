@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/11/04 16:45:56 by mvalk         #+#    #+#                 */
-/*   Updated: 2022/11/28 16:18:53 by mvalk         ########   odam.nl         */
+/*   Updated: 2022/11/30 16:44:40 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,18 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = ft_strdup(saved_str);
 	if (!line)
-		return (ft_free(saved_str));
+	{
+		free(saved_str);
+		saved_str = NULL;
+		return (NULL);
+	}
 	saved_str = ft_trim_str(saved_str, 1);
 	line = ft_trim_str(line, 0);
 	if (!line)
-		return (ft_free(saved_str));
+	{
+		free(saved_str);
+		saved_str = NULL;
+		return (NULL);
+	}
 	return (line);
 }
